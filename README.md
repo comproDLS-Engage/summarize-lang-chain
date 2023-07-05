@@ -17,10 +17,16 @@
 ### Create .env file
 - Add ```OPENAI_API_KEY``` with your actual openai api key.
 
-- Run ```pip install streamlit``` to install streamlit.
-
 ### Running app
 
 - Run ```streamlit run .\main.py``` to run the app in browser.
 
 - Run ```python .\summarize.py``` to run the app in console.
+
+### Running docker
+
+- Install docker from https://docs.docker.com/desktop/install/windows-install/.
+
+- Run ```docker build -t summarize-document-lang-chain .``` to build docker file.
+
+- Run ```docker run -d -p 8501:8501 summarize-document-lang-chain:latest``` to run the docker image in a container locally.
