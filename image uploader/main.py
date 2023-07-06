@@ -1,4 +1,5 @@
-from tempfile import NamedTemporaryFile
+import tempfile
+import os
 
 import streamlit as st
 from langchain.agents import initialize_agent
@@ -6,9 +7,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 
 from tools import ImageCaptionTool, ObjectDetectionTool
-
-
-
 
 
 ##############################
@@ -39,32 +37,29 @@ agent = initialize_agent(
 )
 
 # set title
-st.title('Ask a question to an image')
-
-# set header
-# st.header("Please upload an image")
+st.title('Generate the summary and objects of the image')
 
 # upload file
 file = st.file_uploader("Please upload an image", type=["jpeg", "jpg", "png"])
+user_question_1 = "generate a caption for this image?"
+user_question_2 = "Please tell me what are the items present in the image."
 
 if file:
     # display image
     st.image(file, use_column_width=True)
 
-    # text input
-    user_question = st.text_input('Ask a question about your image:')
-
-    ##############################
-    ### compute agent response ###
-    ##############################
-    with NamedTemporaryFile(mode='w+b',dir='.') as f:
+    # Save the file to a temporary directory
+    temp_dir = tempfile.TemporaryDirectory()
+    file_path = os.path.join(temp_dir.name, file.name)
+    with open(file_path, "wb") as f:
         f.write(file.getbuffer())
-        image_path = f.name
 
+    # write agent response
+    with st.spinner(text="In progress..."):
+        response1 = agent.run(f'{user_question_1}, this is the image path: {file_path}')
+        st.write(response1)
+        response2 = agent.run(f'{user_question_2}, this is the image path: {file_path}')
+        st.write(response2)
 
-
-        # write agent response
-        if user_question and user_question != "":
-            with st.spinner(text="In progress..."):
-                response = agent.run(f'{user_question}, this is the image path: {image_path}')
-                st.write(response)
+        # Clean up the temporary directory
+        temp_dir.cleanup()
