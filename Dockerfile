@@ -14,4 +14,4 @@ EXPOSE 8501
 
 ENTRYPOINT ["streamlit", "run"]
 
-CMD ["image uploader/main.py"]
+CMD ["main.py"]
