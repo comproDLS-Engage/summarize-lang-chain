@@ -11,3 +11,4 @@ openai
 nltk
 pypdf
 unstructured
+tiktoken
