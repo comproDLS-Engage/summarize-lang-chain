@@ -10,3 +10,4 @@ google-search-results
 openai
 nltk
 pypdf
+unstructured
