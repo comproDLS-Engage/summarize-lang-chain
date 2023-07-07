@@ -8,10 +8,11 @@ from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 import extraction
 import Q_and_A_docs
 import QAEvaluations
+import SearchResults
 
 from tools import ImageCaptionTool, ObjectDetectionTool
 
-document_type = st.sidebar.selectbox("Choose an Example", ("Summarize a Document","Describe an Image","Extraction", "Q&A From Documents", "Q&A Evaluation"))
+document_type = st.sidebar.selectbox("Choose an Example", ("Summarize a Document","Describe an Image","Extraction", "Q&A From Documents", "Q&A Evaluation","Search Your Query"))
 
 if document_type == "Summarize a Document":
     st.title("Summarize document")
@@ -121,3 +122,10 @@ elif document_type == "Q&A Evaluation":
         st.write("Real Answer: " + eg["answer"])
         st.write("Predicted Answer: " + predictions[i]["text"])
         st.write("Predicted Grade: " + graded_outputs[i]["text"])
+elif document_type == "Search Your Query":
+    query = st.text_input(label="Please ask a question.",
+                          placeholder="Where is Eiffel Tower located?")
+    if query:
+        response = SearchResults.get_answers(query)
+        st.write("Answer")
+        st.write(response)
