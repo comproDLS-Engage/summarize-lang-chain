@@ -8,9 +8,9 @@ from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 
 from tools import ImageCaptionTool, ObjectDetectionTool
 
-document_type = st.sidebar.selectbox("Pick a File Type", ("Text","Image"))
+document_type = st.sidebar.selectbox("Choose an Example", ("Summarize a Document","Describe an Image"))
 
-if document_type == "Text":
+if document_type == "Summarize a Document":
     st.title("Summarize document")
 
     file = st.file_uploader(label="Upload document",
@@ -21,7 +21,7 @@ if document_type == "Text":
         for essay in response:
             st.header("Summary of " + essay["name"])
             st.write(essay["summary"])
-elif document_type == "Image":
+elif document_type == "Describe an Image":
     ##############################
     ### initialize agent #########
     ##############################
@@ -50,7 +50,7 @@ elif document_type == "Image":
     )
 
     # set title
-    st.title('Generate the summary and objects of the image')
+    st.title('Generate description and identify objects in an image')
 
     # upload file
     file = st.file_uploader("Please upload an image", type=["jpeg", "jpg", "png"])
@@ -70,7 +70,7 @@ elif document_type == "Image":
         # write agent response
         with st.spinner(text="In progress..."):
             response1 = agent.run(f'{user_question_1}, this is the image path: {file_path}')
-            st.write(response1)
+            st.write("The description of the image is: " + response1)
             response2 = agent.run(f'{user_question_2}, this is the image path: {file_path}')
             st.write(response2)
 
