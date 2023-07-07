@@ -5,7 +5,8 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 
 # Install dependencies
-RUN pip install -r requirements.txt
+# Added --no-cache-dir to resolve low ram capacity issue.
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy all the source code from current directory to image
 COPY . .
