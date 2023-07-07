@@ -15,11 +15,12 @@ texts = text_splitter.split_documents(data)
 
 
 # Check to see if there is an environment variable with you API keys, if not, use what you put below
-OPENAI_API_KEY = "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"
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 PINECONE_API_KEY = "1af156aa-59cb-40d4-81d5-2fb4c6422e25"
 PINECONE_API_ENV = "asia-southeast1-gcp-free"
 
-embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+embeddings = OpenAIEmbeddings()
 
 # initialize pinecone
 pinecone.init(
@@ -35,7 +36,7 @@ docsearch = Pinecone.from_existing_index(index_name, embeddings)
 def get_answers(query):
     # query = "What are examples of good data science teams?"
     docs = docsearch.similarity_search(query)
-    llm = OpenAI(temperature=0, openai_api_key=OPENAI_API_KEY)
+    llm = OpenAI(temperature=0)
     chain = load_qa_chain(llm, chain_type="stuff")
     result = chain.run(input_documents=docs, question=query)
 

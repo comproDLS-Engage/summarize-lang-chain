@@ -13,6 +13,9 @@ import askabook
 
 from tools import ImageCaptionTool, ObjectDetectionTool
 
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
+
 document_type = st.sidebar.selectbox("Choose an Example", ("Summarize a Document","Describe an Image","Extraction", "Q&A From Documents", "Q&A Evaluation","Search Your Query", "Ask a Book"))
 
 if document_type == "Summarize a Document":
@@ -39,7 +42,6 @@ elif document_type == "Describe an Image":
     )
 
     llm = ChatOpenAI(
-        openai_api_key='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',
         temperature=0,
         model_name="gpt-3.5-turbo"
     )

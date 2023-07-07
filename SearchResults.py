@@ -4,8 +4,8 @@ from langchain.llms import OpenAI
 from langchain.utilities import GoogleSearchAPIWrapper
 
 import os
-os.environ['OPENAI_API_KEY'] = "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"
-os.environ['SERPAPI_API_KEY'] = "5000e62d0511132a87889732f68f8cf884636841636d36f1327359a47c044a5d"
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 
 
