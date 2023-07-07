@@ -5,9 +5,9 @@ import torch
 
 
 class ImageCaptionTool(BaseTool):
-    name = "Image captioner"
+    name = "Image describer"
     description = "Use this tool when given the path to an image that you would like to be described. " \
-                  "It will return a simple caption describing the image."
+                  "It will return a simple description of the image."
 
     def _run(self, img_path):
         image = Image.open(img_path).convert('RGB')
