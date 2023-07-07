@@ -9,10 +9,11 @@ import extraction
 import Q_and_A_docs
 import QAEvaluations
 import SearchResults
+import askabook
 
 from tools import ImageCaptionTool, ObjectDetectionTool
 
-document_type = st.sidebar.selectbox("Choose an Example", ("Summarize a Document","Describe an Image","Extraction", "Q&A From Documents", "Q&A Evaluation","Search Your Query"))
+document_type = st.sidebar.selectbox("Choose an Example", ("Summarize a Document","Describe an Image","Extraction", "Q&A From Documents", "Q&A Evaluation","Search Your Query", "Ask a Book"))
 
 if document_type == "Summarize a Document":
     st.title("Summarize document")
@@ -127,5 +128,12 @@ elif document_type == "Search Your Query":
                           placeholder="Where is Eiffel Tower located?")
     if query:
         response = SearchResults.get_answers(query)
+        st.write("Answer")
+        st.write(response)
+elif document_type == "Ask a Book":
+    query = st.text_input(label="Please ask a question from the book 'Field-guide-to-data-science.'",
+                          placeholder="What are examples of good data science teams?")
+    if query:
+        response = askabook.get_answers(query)
         st.write("Answer")
         st.write(response)
