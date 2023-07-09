@@ -17,13 +17,14 @@ from tools import ImageCaptionTool, ObjectDetectionTool
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
-document_type = st.sidebar.selectbox("Choose an Example", ("Summarize a Document","Describe an Image","Extraction", "Q&A From Documents", "Q&A Evaluation","Search Your Query", "Ask a Book"))
+document_type = st.sidebar.selectbox("Choose an Example", ("Summarize a Document", "Query Latest Data",
+                                     "Query a Preloaded Book", "Q&A From Documents", "Extraction", "Q&A Evaluation"))
 
 if document_type == "Summarize a Document":
-    st.title("Summarize document")
+    st.title("Upload a text file to generate it's summary.")
 
     file = st.file_uploader(label="Upload document",
-                        accept_multiple_files=True, type=".txt")
+                            accept_multiple_files=True, type=".txt")
 
     if file:
         response = summarize.summarize(file)
@@ -61,7 +62,8 @@ elif document_type == "Describe an Image":
     st.title('Generate description and identify objects in an image')
 
     # upload file
-    file = st.file_uploader("Please upload an image", type=["jpeg", "jpg", "png"])
+    file = st.file_uploader("Please upload an image",
+                            type=["jpeg", "jpg", "png"])
     user_question_1 = "generate a caption for this image?"
     user_question_2 = "Please tell me what are the items present in the image."
 
@@ -77,9 +79,11 @@ elif document_type == "Describe an Image":
 
         # write agent response
         with st.spinner(text="In progress..."):
-            response1 = agent.run(f'{user_question_1}, this is the image path: {file_path}')
+            response1 = agent.run(
+                f'{user_question_1}, this is the image path: {file_path}')
             st.write("The description of the image is: " + response1)
-            response2 = agent.run(f'{user_question_2}, this is the image path: {file_path}')
+            response2 = agent.run(
+                f'{user_question_2}, this is the image path: {file_path}')
             st.write(response2)
 
             # Clean up the temporary directory
@@ -96,8 +100,11 @@ elif document_type == "Extraction":
         st.header("Extracted Information")
         st.write(response)
 elif document_type == "Q&A From Documents":
+    st.title("Ask a question based on multiple documents.")
+    st.write("We have a bunch of documents related to history of India Cricket. You can ask any relevant question and the program will find the answer to it using the documents.")
+    st.write("The program will load the books at runtime and query among them.")
     query = st.text_input(label="Please ask a question.",
-                          placeholder="What is compro technologies?")
+                          placeholder="How many world cup's has India won?")
     if query:
         response = Q_and_A_docs.get_answers(query)
         st.write("Answer")
@@ -126,16 +133,19 @@ elif document_type == "Q&A Evaluation":
         st.write("Real Answer: " + eg["answer"])
         st.write("Predicted Answer: " + predictions[i]["text"])
         st.write("Predicted Grade: " + graded_outputs[i]["text"])
-elif document_type == "Search Your Query":
+elif document_type == "Query Latest Data":
+    st.title("Query using an external tool and not chatGPT")
+    st.write("This is useful when we want to retrieve any latest information but our model is not yet trained for it.")
     query = st.text_input(label="Please ask a question.",
-                          placeholder="Where is Eiffel Tower located?")
+                          placeholder="What day will Diwali be celebrated in 2023?")
     if query:
         response = SearchResults.get_answers(query)
         st.write("Answer")
         st.write(response)
-elif document_type == "Ask a Book":
-    query = st.text_input(label="Please ask a question from the book 'Field-guide-to-data-science.'",
-                          placeholder="What are examples of good data science teams?")
+elif document_type == "Query a Preloaded Book":
+    st.title("Ask a question based on preloaded content")
+    query = st.text_input(label="We have pre-loaded a book about basics of Computer Sciene. Please ask any relevant question and the program will find the answer to it using the uploaded book.'",
+                          placeholder="What are the components of a computer?")
     if query:
         response = askabook.get_answers(query)
         st.write("Answer")

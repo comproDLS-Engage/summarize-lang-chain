@@ -17,8 +17,8 @@ texts = text_splitter.split_documents(data)
 # Check to see if there is an environment variable with you API keys, if not, use what you put below
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
-PINECONE_API_KEY = "1af156aa-59cb-40d4-81d5-2fb4c6422e25"
-PINECONE_API_ENV = "asia-southeast1-gcp-free"
+PINECONE_API_KEY = "0e71ade9-45c7-42b6-882b-5cfeea7b0a4f"
+PINECONE_API_ENV = "us-west4-gcp-free"
 
 embeddings = OpenAIEmbeddings()
 
@@ -27,7 +27,7 @@ pinecone.init(
     api_key=PINECONE_API_KEY,  # find at app.pinecone.io
     environment=PINECONE_API_ENV  # next to api key in console
 )
-index_name = "langchaintest"  # put in the name of your pinecone index here
+index_name = "langchaintest1"  # put in the name of your pinecone index here
 
 
 docsearch = Pinecone.from_existing_index(index_name, embeddings)
