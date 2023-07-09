@@ -12,7 +12,7 @@ load_dotenv(find_dotenv())
 nltk.download('averaged_perceptron_tagger')
 
 # Get your loader ready
-loader = DirectoryLoader('./data', glob='**/*.txt')
+loader = DirectoryLoader('./data/cricket', glob='**/*.txt')
 
 # Load up your text into documents
 documents = loader.load()
