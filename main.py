@@ -91,8 +91,10 @@ elif document_type == "Describe an Image":
 elif document_type == "Extraction":
     st.write("Current schema used is: ")
     st.write("person_name, person_height, person_hair_color, dog_name, dog_breed")
+    st.write("Use the following text as input:")
+    st.write("Alex is 5 feet tall. Claudia is 1 feet taller Alex and jumps higher than him. Claudia is a brunette and Alex is blonde. Alex's dog Frosty is a labrador and likes to play hide and seek.")
     extraction_text = st.text_area(label="Enter text to extract from",
-                                   placeholder="Alex is 5 feet tall. Claudia is 1 feet taller Alex and jumps higher than him. Claudia is a brunette and Alex is blonde. Alex's dog Frosty is a labrador and likes to play hide and seek.")
+                                   placeholder="")
     if extraction_text:
         st.header("Original Text")
         st.write(extraction_text)
