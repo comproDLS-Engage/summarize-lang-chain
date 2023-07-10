@@ -113,7 +113,7 @@ elif document_type == "Extract Structured Data":
         st.write(response)
 elif document_type == "Q&A From Documents":
     st.title("Ask a question based on multiple documents.")
-    st.write("We have a bunch of documents related to history of India Cricket. You can ask any relevant question and the program will find the answer to it using the documents.")
+    st.write("We have a bunch of documents related to the history of Indian Cricket. You can ask any relevant question and the program will find the answer to it using the documents.")
     st.write("The program will load the documents at runtime and query among them.")
     query = st.text_input(label="Please ask a question.",
                           placeholder="How many world cup's has India won?")
