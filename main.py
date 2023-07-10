@@ -23,9 +23,18 @@ document_type = st.sidebar.selectbox("Choose an Example", ("Summarize a Document
 if document_type == "Summarize a Document":
     st.title("Upload a text file to generate it's summary.")
 
-    file = st.file_uploader(label="Upload document",
+    file = st.file_uploader(label="Upload document (*Please note that currently a max of 2000 words is supported.)",
                             accept_multiple_files=True, type=".txt")
-
+    st.markdown(
+        """
+        <style>
+            small {
+                display: none;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
     if file:
         response = summarize.summarize(file)
         for essay in response:
@@ -147,7 +156,10 @@ elif document_type == "Query Latest Data":
         st.write(response)
 elif document_type == "Query a Preloaded Book":
     st.title("Ask a question based on preloaded content")
-    query = st.text_input(label="We have pre-loaded a book about basics of Computer Sciene. Please ask any relevant question and the program will find the answer to it using the uploaded book.'",
+    st.write("Pre-loaded book can be viewed by clicking on below link - ")
+    link = '[https://drive.google.com/file/d/1uxv7V09neKmmo4_2hQCcOvHjJ-1lPDgc/view](https://drive.google.com/file/d/1uxv7V09neKmmo4_2hQCcOvHjJ-1lPDgc/view)'
+    st.markdown(link, unsafe_allow_html=True)
+    query = st.text_input(label="We have pre-loaded a book about basics of Computer Sciene. Please ask any relevant question and the program will find the answer to it using the uploaded book.",
                           placeholder="What are the components of a computer?")
     if query:
         response = askabook.get_answers(query)
