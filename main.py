@@ -18,7 +18,7 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 document_type = st.sidebar.selectbox("Choose an Example", ("Summarize a Document", "Query Latest Data",
-                                     "Query a Preloaded Book", "Q&A From Documents", "Extraction", "Q&A Evaluation"))
+                                     "Query a Preloaded Book", "Q&A From Documents", "Extract Structured Data"))
 
 if document_type == "Summarize a Document":
     st.title("Upload a text file to generate it's summary.")
@@ -88,7 +88,8 @@ elif document_type == "Describe an Image":
 
             # Clean up the temporary directory
             temp_dir.cleanup()
-elif document_type == "Extraction":
+elif document_type == "Extract Structured Data":
+    st.title("Extract structured data from the given text based on a predefined schema")
     st.write("Current schema used is: ")
     st.write("person_name, person_height, person_hair_color, dog_name, dog_breed")
     st.write("Use the following text as input:")
