@@ -63,9 +63,9 @@ with st.spinner(text="In progress..."):
     response1 = agent.run(
         f'{user_question_1}, this is the image path: {file_path}')
     st.write("The description of the image is: " + response1)
-    response2 = agent.run(
-        f'{user_question_2}, this is the image path: {file_path}')
-    st.write(response2)
+    # response2 = agent.run(
+    #     f'{user_question_2}, this is the image path: {file_path}')
+    # st.write(response2)
 
     # # Clean up the temporary directory
     # temp_dir.cleanup()
