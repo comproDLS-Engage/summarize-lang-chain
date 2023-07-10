@@ -1,15 +1,13 @@
 langchain
 nltk
 Pillow
-pinecone_client
 python-dotenv
 streamlit
 torch
 transformers
-google-search-results
 openai
 nltk
-pypdf
-unstructured
 tiktoken
 faiss-cpu
+tabulate 
+timm
