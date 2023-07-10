@@ -57,7 +57,7 @@ user_question_2 = "Please tell me what are the items present in the image."
 #     with open(file_path, "wb") as f:
 #         f.write(file.getbuffer())
 
-file_path = 'C:/Users/Compro/Downloads/hqdefault.jpg'
+file_path = 'https://img.freepik.com/free-photo/dynamic-website-hosting-concept_23-2149406768.jpg'
 
 # write agent response
 with st.spinner(text="In progress..."):
