@@ -147,7 +147,7 @@ elif document_type == "Query Latest Data":
         st.write(response)
 elif document_type == "Query a Preloaded Book":
     st.title("Ask a question based on preloaded content")
-    query = st.text_input(label="We have pre-loaded a book about basics of Computer Sciene. Please ask any relevant question and the program will find the answer to it using the uploaded book.'",
+    query = st.text_input(label="We have pre-loaded a book about basics of Computer Science. Please ask any relevant question and the program will find the answer to it using the uploaded book.'",
                           placeholder="What are the components of a computer?")
     if query:
         response = askabook.get_answers(query)
