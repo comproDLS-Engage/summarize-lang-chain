@@ -7,11 +7,11 @@ from langchain.vectorstores import Pinecone
 from langchain.embeddings.openai import OpenAIEmbeddings
 import pinecone
 
-loader = PyPDFLoader("./data/field-guide-to-data-science.pdf")
-data = loader.load()
+# loader = PyPDFLoader("./data/field-guide-to-data-science.pdf")
+# data = loader.load()
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
-texts = text_splitter.split_documents(data)
+# text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
+# texts = text_splitter.split_documents(data)
 
 
 # Check to see if there is an environment variable with you API keys, if not, use what you put below
