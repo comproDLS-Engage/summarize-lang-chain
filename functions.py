@@ -61,17 +61,17 @@ def detect_objects(image_path):
     return detections
 
 def get_objects(input_string ):
-# Define the regular expression pattern
-pattern = r'\[(\d+(?:, \d+)*)\]\s(\w+)\s\d+\.\d+'
+    # Define the regular expression pattern
+    pattern = r'\[(\d+(?:, \d+)*)\]\s(\w+)\s\d+\.\d+'
 
-# Find all matches in the input string
-matches = re.findall(pattern, input_string)
+    # Find all matches in the input string
+    matches = re.findall(pattern, input_string)
 
-# Extract the object names from the matches
-object_names = [match[1] for match in matches]
+    # Extract the object names from the matches
+    object_names = [match[1] for match in matches]
 
-# Print the extracted object names
-return object_names
+    # Print the extracted object names
+    return object_names
 
 
 if __name__ == '__main__':

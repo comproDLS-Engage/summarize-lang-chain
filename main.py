@@ -54,7 +54,7 @@ user_question_2 = "Please tell me what are the items present in the image."
 if file:
     # display image
 
-    st.image(file_path, use_column_width=True)
+    st.image(file, use_column_width=True)
     # Save the file to a temporary directory
     temp_dir = tempfile.TemporaryDirectory()
     file_path = os.path.join(temp_dir.name, file.name)
@@ -74,6 +74,7 @@ if file:
         # st.write(response2)
         response2 = functions.detect_objects(file_path)
         print(response2)
+        response2 = functions.get_objects(response2)
         st.write(response2)
 
         # Clean up the temporary directory
